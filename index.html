@@ -6,206 +6,143 @@
     <title>Centro Restobar</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            background: url('https://i0.wp.com/placeres.pe/wp-content/uploads/2024/01/7-scaled.jpg?fit=2560%2C1707&ssl=1') no-repeat center center/cover;
+            width: 100%;
+            padding: 60px 0;
+        }
+
+        h1, p, label, button {
+            text-shadow: 3px 3px 6px black;
+            color: white;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 400px;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        .menu-buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-buttons button {
+            background: yellow;
+            border: 3px solid black;
+            padding: 15px 25px;
+            margin: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 22px;
+            width: 85%;
+            max-width: 350px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px black;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu-buttons button:hover {
+            background: #ffcc00;
+            transform: scale(1.1);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 10px;
+            text-decoration: none;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #ffcc00;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <header>
         <img src="https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg" alt="Centro Restobar Logo" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="entradas.html">Entradas</a>
-            <a href="platos.html">Platos de Fondo</a>
-            <a href="bebidas.html">Bebidas</a>
-            <a href="#contacto">Contáctanos</a>
-        </nav>
+        <h1>Bienvenidos a Centro Restobar</h1>
+        <p>Disfruta de la mejor gastronomía peruana en un ambiente único.</p>
     </header>
 
-    <main class="hero">
-        <div class="hero-content">
-            <h1>Bienvenidos a Centro Restobar</h1>
-            <p>Disfruta de la mejor gastronomía peruana en un ambiente único.</p>
-            <a href="entradas.html" class="btn">Ver Menú</a>
-        </div>
+    <main class="age-verification">
+        <label for="birthdate">Ingresa tu fecha de nacimiento:</label>
+        <input type="date" id="birthdate">
+        <button onclick="checkAge()">Ingresar</button>
     </main>
 
+    <div id="menu-buttons" class="hidden">
+        <button onclick="location.href='#'">Entradas</button>
+        <button onclick="location.href='#'">Platos de Fondo</button>
+        <button onclick="location.href='#'">Bebidas</button>
+    </div>
+
     <footer>
-        <p>Contacto:</p>
         <div class="social-icons">
-            <a href="https://www.instagram.com/tu_instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/tu_facebook" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/tu_numero" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:tu_email@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:#"><i class="fas fa-envelope"></i></a>
         </div>
         <p>&copy; 2025 Centro Restobar. Todos los derechos reservados.</p>
     </footer>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Restobar</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <header>
-        <img src="https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg" alt="Centro Restobar Logo" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="entradas.html">Entradas</a>
-            <a href="platos.html">Platos de Fondo</a>
-            <a href="bebidas.html">Bebidas</a>
-            <a href="#contacto">Contáctanos</a>
-        </nav>
-    </header>
 
-    <main class="hero">
-        <div class="hero-content">
-            <h1>Bienvenidos a Centro Restobar</h1>
-            <p>Disfruta de la mejor gastronomía peruana en un ambiente único.</p>
-            <a href="entradas.html" class="btn">Ver Menú</a>
-        </div>
-    </main>
-
-    <footer>
-        <p>Contacto:</p>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/tu_instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/tu_facebook" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/tu_numero" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:tu_email@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p>&copy; 2025 Centro Restobar. Todos los derechos reservados.</p>
-    </footer>
+    <script>
+        function checkAge() {
+            const birthdate = document.getElementById("birthdate").value;
+            if (!birthdate) return;
+            
+            const birthYear = new Date(birthdate).getFullYear();
+            const currentYear = new Date().getFullYear();
+            const age = currentYear - birthYear;
+            
+            if (age >= 18) {
+                document.querySelector(".age-verification").style.display = "none";
+                document.getElementById("menu-buttons").classList.remove("hidden");
+            } else {
+                alert("Debes ser mayor de edad para ingresar.");
+            }
+        }
+    </script>
 </body>
 </html>
 
-body {
-    background: linear-gradient(135deg, #1e1e2f, #3a3a55);
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    border-bottom: 2px solid #ffcc00;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #ffcc00;
-}
-
-.menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
-}
-
-.card {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.menu-grid img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: #25253d;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    text-align: center;
-}
-
-.modal button {
-    background-color: #ffcc00;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.modal button:hover {
-    background-color: #ffdb4d;
-}
-
-.hidden {
-    display: none;
-}
-
-.logo {
-    width: 150px;
-    margin: 20px auto;
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    const entradasLista = document.getElementById("entradas-lista");
-
-    // Listado de entradas
-    const entradas = [
-        { nombre: "Ceviche Clásico", img: "https://www.comedera.com/wp-content/uploads/2021/09/ceviche-peruano-.jpg", descripcion: "Delicioso ceviche de pescado fresco marinado en limón, acompañado de camote y choclo." },
-        { nombre: "Papa a la Huancaína", img: "https://www.comedera.com/wp-content/uploads/2022/09/Papas-a-la-huancaina.jpg", descripcion: "Papas bañadas en una cremosa salsa de ají amarillo con queso y galletas." },
-        { nombre: "Anticuchos", img: "https://www.peru.travel/Contenido/General/Imagen/es/28/1.1/anticuchos.jpg", descripcion: "Tradicionales brochetas de corazón de res marinadas con especias peruanas y acompañadas de papas doradas." },
-        { nombre: "Causa Limeña", img: "https://www.comedera.com/wp-content/uploads/2022/09/causa-rellena.jpg", descripcion: "Puré de papa amarilla relleno de pollo o atún, con mayonesa y palta." }
-    ];
-
-    // Cargar entradas al DOM
-    function cargarEntradas() {
-        entradasLista.innerHTML = "";
-        entradas.forEach(entrada => {
-            const card = document.createElement("div");
-            card.classList.add("card", "entrada");
-            card.innerHTML = `
-                <img src="${entrada.img}" alt="${entrada.nombre}">
-                <h3>${entrada.nombre}</h3>
-                <p>${entrada.descripcion}</p>
-            `;
-            entradasLista.appendChild(card);
-        });
-    }
-
-    cargarEntradas();
-});
