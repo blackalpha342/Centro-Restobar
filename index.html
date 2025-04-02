@@ -8,11 +8,13 @@
   <style>
     /* Estilos generales optimizados */
     :root {
-      --primary-color: #2c3e50;
-      --secondary-color: #27ae60;
-      --text-color: #333;
-      --light-bg: #f8f5f2;
+      --primary-color: #000000;
+      --secondary-color: #ff0000;
+      --text-color: #ffffff;
+      --light-bg: #111111;
       --white: #fff;
+      --highlight-color: #ff00ff;
+      --star-color: #ffcc00;
     }
     
     * {
@@ -23,19 +25,19 @@
     }
 
     body {
-      background-color: var(--light-bg);
+      background-color: var(--primary-color);
       color: var(--text-color);
       line-height: 1.6;
     }
 
     /* Header */
     .header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, #4a6491 100%);
+      background: linear-gradient(135deg, #ff0000 0%, #9900cc 100%);
       color: var(--white);
       text-align: center;
       padding: 3rem 1rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .header img {
@@ -97,7 +99,7 @@
     .menu-section h2 {
       text-align: center;
       font-size: 2rem;
-      color: var(--primary-color);
+      color: var(--white);
       margin-bottom: 2rem;
       position: relative;
       padding-bottom: 10px;
@@ -125,18 +127,25 @@
     .menu-item {
       display: flex;
       flex-direction: column;
-      background: var(--white);
+      background: var(--light-bg);
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       max-width: 400px;
       width: 100%;
+      position: relative;
+      border: 3px solid transparent;
+    }
+
+    .menu-item.selected {
+      border-color: var(--highlight-color);
+      box-shadow: 0 0 0 3px rgba(255, 0, 255, 0.3);
     }
 
     .menu-item:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+      box-shadow: 0 12px 20px rgba(255,0,255,0.2);
     }
 
     .menu-item-image {
@@ -154,29 +163,102 @@
 
     .menu-item h3 {
       font-size: 1.3rem;
-      color: var(--primary-color);
+      color: var(--white);
       margin-bottom: 0.8rem;
       font-weight: 600;
     }
 
     .menu-item p {
-      color: #555;
+      color: #ccc;
       margin-bottom: 1rem;
       font-size: 0.95rem;
       line-height: 1.6;
       flex-grow: 1;
     }
 
+    .price-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #444;
+    }
+
     .price {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: var(--secondary-color);
-      margin-top: 0.5rem;
+      position: relative;
+      padding: 0.3rem 0.8rem;
+      background: rgba(255, 0, 0, 0.1);
+      border-radius: 6px;
+    }
+
+    .price::before {
+      content: 'S/';
+      font-size: 0.8em;
+      margin-right: 2px;
+      opacity: 0.8;
+    }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin: 0.5rem 0;
+    }
+
+    .star {
+      color: var(--star-color);
+      font-size: 0.9rem;
+    }
+
+    .star.empty {
+      color: #444;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff0000 0%, #9900cc 100%);
+      color: white;
+      flex-grow: 1;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #cc0000 0%, #7700aa 100%);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background-color: #333;
+      color: var(--white);
+    }
+
+    .btn-secondary:hover {
+      background-color: #444;
     }
 
     /* Footer */
     .footer {
-      background: var(--primary-color);
+      background: linear-gradient(135deg, #000000 0%, #220022 100%);
       color: var(--white);
       text-align: center;
       padding: 2rem;
@@ -206,13 +288,13 @@
       .menu-item {
         max-width: 100%;
       }
+      
+      .action-buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
-  
-
-
-
 <body>
   <!-- Header -->
   <header class="header">
@@ -236,93 +318,233 @@
     <div class="menu-section">
       <h2>Entradas</h2>
       <div class="menu-items">
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://blog.renaware.com/wp-content/uploads/2024/04/Causa-Limena-02.jpg" alt="Causa Limeña" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Causa Limeña</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(48)</span>
+            </div>
             <p>Puré de papa amarilla prensado y relleno de pollo, atún o mariscos, sazonado con limón y ají amarillo.</p>
-            <div class="price">S/ 15.00</div>
+            <div class="price-container">
+              <div class="price">15.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Causa Limeña', 15.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Causa Limeña')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
-          <img src="https://resizer.glanacion.com/resizer/v2/papas-a-la-XSHZH7X5ZJFNHCFJI3YQCGNMOY.jpg?auth=0728df3f6912f07c1553b71029692e7c86fa1751c4bdb1cbece26cc31c0fa008&width=1280&height=854&quality=70&smart=true " alt="Papa a la Huancaína" class="menu-item-image">
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://resizer.glanacion.com/resizer/v2/papas-a-la-XSHZH7X5ZJFNHCFJI3YQCGNMOY.jpg?auth=0728df3f6912f07c1553b71029692e7c86fa1751c4bdb1cbece26cc31c0fa008&width=1280&height=854&quality=70&smart=true" alt="Papa a la Huancaína" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Papa a la Huancaína</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(36)</span>
+            </div>
             <p>Rodajas de papa bañadas en una cremosa salsa de ají amarillo, queso fresco y leche, acompañadas de huevo duro y aceitunas.</p>
-            <div class="price">S/ 12.00</div>
+            <div class="price-container">
+              <div class="price">12.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Papa a la Huancaína', 12.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Papa a la Huancaína')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://cdn0.recetasgratis.net/es/posts/4/7/5/leche_de_tigre_peruana_76574_orig.jpg" alt="Leche de Tigre" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Leche de Tigre</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(52)</span>
+            </div>
             <p>Jugo cítrico resultante de la marinada del ceviche, servido en copa con trozos de pescado, mariscos y acompañado de chifles.</p>
-            <div class="price">S/ 14.00</div>
+            <div class="price-container">
+              <div class="price">14.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Leche de Tigre', 14.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Leche de Tigre')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://mojo.generalmills.com/api/public/content/_4GCuvtJh0CI-0D3MerHNw_gmi_hi_res_jpeg.jpeg?v=9e0e6b46&t=16e3ce250f244648bef28c5949fb99ff" alt="Choros a la Chalaca" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Choros a la Chalaca</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(29)</span>
+            </div>
             <p>Mejillones frescos servidos en su concha, cubiertos con una mezcla de cebolla, tomate, choclo y jugo de limón.</p>
-            <div class="price">S/ 13.00</div>
+            <div class="price-container">
+              <div class="price">13.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Choros a la Chalaca', 13.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Choros a la Chalaca')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://i.ytimg.com/vi/jEiKrXwz_P0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAedKih0ny_QJUtd8NFJS9om7upfA" alt="Ocopa Arequipeña" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Ocopa Arequipeña</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(31)</span>
+            </div>
             <p>Papas sancochadas cubiertas con una salsa a base de huacatay, maní, queso y ají, acompañadas de huevo duro y aceitunas.</p>
-            <div class="price">S/ 12.00</div>
+            <div class="price-container">
+              <div class="price">12.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Ocopa Arequipeña', 12.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Ocopa Arequipeña')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://comidasperuanas.net/wp-content/uploads/2015/06/Anticuchos-de-Corazón-Peruanos.jpg" alt="Anticuchos de Corazón" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Anticuchos de Corazón</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(64)</span>
+            </div>
             <p>Brochetas de corazón de res marinadas en ají panca y especias, asadas a la parrilla y servidas con papas doradas y choclo.</p>
-            <div class="price">S/ 18.00</div>
+            <div class="price-container">
+              <div class="price">18.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Anticuchos de Corazón', 18.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Anticuchos de Corazón')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://assets.epicurious.com/photos/5589c41e81ac1e502367a5f7/master/pass/56389772_classic-ceviche_6x4.jpg" alt="Ceviche Clásico" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Ceviche Clásico</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(78)</span>
+            </div>
             <p>Pescado fresco marinado en jugo de limón, mezclado con ají, cebolla roja y cilantro, acompañado de camote y choclo.</p>
-            <div class="price">S/ 25.00</div>
+            <div class="price-container">
+              <div class="price">25.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Ceviche Clásico', 25.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Ceviche Clásico')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://blog.renaware.com/wp-content/uploads/2018/01/Tiradito-3779-new-logo.jpg" alt="Tiradito en Salsa de Ají Amarillo" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Tiradito en Salsa de Ají Amarillo</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(42)</span>
+            </div>
             <p>Láminas finas de pescado bañadas en una salsa cremosa y ligeramente picante de ají amarillo.</p>
-            <div class="price">S/ 22.00</div>
+            <div class="price-container">
+              <div class="price">22.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Tiradito en Salsa de Ají Amarillo', 22.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Tiradito en Salsa de Ají Amarillo')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://mojo.generalmills.com/api/public/content/RCngmFENdkS5zrHuS7yeVw_gmi_hi_res_jpeg.jpeg?v=93b2631f&t=16e3ce250f244648bef28c5949fb99ff" alt="Ensalada de Quinoa" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Ensalada de Quinoa</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(25)</span>
+            </div>
             <p>Mezcla fresca de quinoa cocida con verduras de estación, aliñada con una vinagreta de maracuyá.</p>
-            <div class="price">S/ 15.00</div>
+            <div class="price-container">
+              <div class="price">15.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Ensalada de Quinoa', 15.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Ensalada de Quinoa')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://img-global.cpcdn.com/recipes/ed88a8560e635b70/1200x630cq70/photo.jpg" alt="Tamales Criollos" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Tamales Criollos</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(19)</span>
+            </div>
             <p>Masa de maíz rellena de carne de cerdo o pollo, envuelta en hojas de plátano y cocida al vapor, acompañada de salsa criolla.</p>
-            <div class="price">S/ 10.00</div>
+            <div class="price-container">
+              <div class="price">10.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Tamales Criollos', 10.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Tamales Criollos')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -332,398 +554,687 @@
     <div class="menu-section">
       <h2>Platos Principales</h2>
       <div class="menu-items">
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmZYWA69yCHnN2hg_wQPlOfFCsrBNP3wsZ3A&s" alt="Lomo Saltado" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Lomo Saltado</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(92)</span>
+            </div>
             <p>Un delicioso salteado de carne de res con cebolla, tomate y papas fritas, acompañado de arroz blanco.</p>
-            <div class="price">S/ 35.00</div>
+            <div class="price-container">
+              <div class="price">35.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Lomo Saltado', 35.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Lomo Saltado')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://recetas.comohacer.cl/wp-content/uploads/2023/03/aji-de-gallina-con-arroz.jpg" alt="Ají de Gallina" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Ají de Gallina</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(67)</span>
+            </div>
             <p>Guiso cremoso de pollo deshilachado con ají amarillo, leche y pan, servido con arroz blanco y huevo duro.</p>
-            <div class="price">S/ 28.00</div>
+            <div class="price-container">
+              <div class="price">28.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Ají de Gallina', 28.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Ají de Gallina')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://www.comida-peruana.com/base/stock/Recipe/pachamanca-a-la-olla/pachamanca-a-la-olla_web.jpg" alt="Pachamanca" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Pachamanca</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(58)</span>
+            </div>
             <p>Tradicional plato andino cocido bajo tierra con carne de res, cerdo o pollo, acompañado de papas, choclo y habas.</p>
-            <div class="price">S/ 45.00</div>
+            <div class="price-container">
+              <div class="price">45.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Pachamanca', 45.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Pachamanca')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://buenazo.cronosmedia.glr.pe/original/2020/09/22/5f6956de0352f279c449e24e.jpg" alt="Seco de Cabrito" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Seco de Cabrito</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(43)</span>
+            </div>
             <p>Estofado tradicional del norte del Perú con carne de cabrito marinada en chicha de jora, acompañado de frejoles y arroz.</p>
-            <div class="price">S/ 40.00</div>
+            <div class="price-container">
+              <div class="price">40.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Seco de Cabrito', 40.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Seco de Cabrito')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Tacu_Tacu.jpg" alt="Tacu Tacu con Mariscos" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Tacu Tacu con Mariscos</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(37)</span>
+            </div>
             <p>Exquisita combinación de arroz y frejoles dorados en sartén, acompañado de un mix de mariscos en salsa.</p>
-            <div class="price">S/ 38.00</div>
+            <div class="price-container">
+              <div class="price">38.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Tacu Tacu con Mariscos', 38.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Tacu Tacu con Mariscos')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://tofuu.getjusto.com/orioneat-local/resized2/psLpdg8RTNNEjvWz3-300-x.webp" alt="Pescado a la Plancha con Tacu Tacu" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Pescado a la Plancha con Tacu Tacu</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(41)</span>
+            </div>
             <p>Filete de pescado a la plancha servido con una base de tacu tacu de frejoles y arroz crocante.</p>
-            <div class="price">S/ 36.00</div>
+            <div class="price-container">
+              <div class="price">36.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Pescado a la Plancha con Tacu Tacu', 36.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Pescado a la Plancha con Tacu Tacu')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://www.recetasnestle.com.ec/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/bbb31707c4bd37def6dd0ae89d42e085.jpg?itok=1U9BUf6D" alt="Ceviche de Pescado" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Ceviche de Pescado</h3>
-            <p>Plato insignia del Perú, hecho con pescado fresco marinado en limón, ají y especias, acompañado de choclo y camote.</p>
-            <div class="price">S/ 30.00</div>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(85)</span>
+            </div>
+            <p>Pescado fresco marinado en jugo de limón con ají, cebolla roja y cilantro, servido con camote, choclo y cancha serrana.</p>
+            <div class="price-container">
+              <div class="price">30.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Ceviche de Pescado', 30.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Ceviche de Pescado')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://i.ytimg.com/vi/H6lgxgEWIs8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCTdb3x_uADhlQHLbsZmEgnP9P1-w" alt="Arroz con Pollo" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Arroz con Pollo</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(54)</span>
+            </div>
             <p>Arroz verde sazonado con culantro, acompañado de una jugosa presa de pollo y salsa criolla.</p>
-            <div class="price">S/ 27.00</div>
+            <div class="price-container">
+              <div class="price">27.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Arroz con Pollo', 27.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Arroz con Pollo')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://cdn-ilddihb.nitrocdn.com/MgqZCGPEMHvMRLsisMUCAIMWvgGMxqaj/assets/images/optimized/rev-1d96046/www.goya.com/wp-content/uploads/2023/10/peruvian-style-shrimp-soup.jpg" alt="Chupe de Camarones" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Chupe de Camarones</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(45)</span>
+            </div>
             <p>Sopa contundente de camarones con leche, papa, huevo, arroz y queso, típica de la gastronomía arequipeña.</p>
-            <div class="price">S/ 42.00</div>
+            <div class="price-container">
+              <div class="price">42.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Chupe de Camarones', 42.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Chupe de Camarones')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Bebidas sin Alcohol -->
+    <!-- Bebidas -->
     <div class="menu-section">
-      <h2>Bebidas sin Alcohol</h2>
+      <h2>Bebidas</h2>
       <div class="menu-items">
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://www.lovferments.com/wp-content/uploads/2021/04/beb_chicha.jpg" alt="Chicha Morada" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Chicha Morada</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(76)</span>
+            </div>
             <p>Refrescante bebida a base de maíz morado, aromatizada con canela y clavo de olor, endulzada al gusto.</p>
-            <div class="price">Vaso S/ 5.00 | Jarra S/ 15.00</div>
+            <div class="price-container">
+              <div class="price">5.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Chicha Morada', 5.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Chicha Morada')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwtLQC2e3b20gMg-nPG07Vb3HtUT6NSbjEEw&s" alt="Limonada de Hierba Luisa" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Limonada de Hierba Luisa</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(42)</span>
+            </div>
             <p>Limonada tradicional infusionada con hierba luisa, ofreciendo un toque cítrico y herbal.</p>
-            <div class="price">Vaso S/ 4.00 | Jarra S/ 12.00</div>
+            <div class="price-container">
+              <div class="price">4.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Limonada de Hierba Luisa', 4.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Limonada de Hierba Luisa')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRUkZ7MzMr19cF2aa7M1MP78xp433KHyJI6Q&s" alt="Emoliente Andino" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Emoliente Andino</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(29)</span>
+            </div>
             <p>Bebida caliente y reconfortante elaborada con cebada, linaza y hierbas medicinales.</p>
-            <div class="price">S/ 6.00</div>
+            <div class="price-container">
+              <div class="price">6.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Emoliente Andino', 6.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Emoliente Andino')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://okdiario.com/img/recetas/2017/08/17/agua-de-cebada-2.jpg" alt="Agua de Cebada" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Agua de Cebada</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(31)</span>
+            </div>
             <p>Refresco frío preparado a base de cebada tostada, ligeramente endulzado y aromatizado con limón.</p>
-            <div class="price">Vaso S/ 4.00 | Jarra S/ 12.00</div>
+            <div class="price-container">
+              <div class="price">4.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Agua de Cebada', 4.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Agua de Cebada')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/39bd5378ac4038a37c7fdaa4bd865598/Derivates/a711495123992a20dacf98c637816c87e5d735f2.jpg" alt="Maracuyá Sour sin alcohol" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Maracuyá Sour sin alcohol</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(38)</span>
+            </div>
             <p>Bebida espumosa y ácida elaborada con jugo de maracuyá fresco, clara de huevo y jarabe de goma.</p>
-            <div class="price">S/ 8.00</div>
+            <div class="price-container">
+              <div class="price">8.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Maracuyá Sour sin alcohol', 8.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Maracuyá Sour sin alcohol')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://comidasperuanas.net/wp-content/uploads/2023/11/Receta-de-Refresco-de-Camu-Camu.jpg" alt="Refresco de Camu Camu" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Refresco de Camu Camu</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(27)</span>
+            </div>
             <p>Jugo natural de camu camu, fruta amazónica rica en vitamina C, servido frío.</p>
-            <div class="price">Vaso S/ 6.00 | Jarra S/ 18.00</div>
+            <div class="price-container">
+              <div class="price">6.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Refresco de Camu Camu', 6.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Refresco de Camu Camu')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/FJ5GFKSDMNG47PFSMK7UFJAVBU.jpg" alt="Mate de Coca" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Mate de Coca</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(35)</span>
+            </div>
             <p>Infusión caliente de hojas de coca, tradicional de los Andes, ideal para la digestión.</p>
-            <div class="price">S/ 5.00</div>
+            <div class="price-container">
+              <div class="price">5.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Mate de Coca', 5.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Mate de Coca')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://img-global.cpcdn.com/recipes/b4cc360d0d77e535/680x482cq70/batido-de-lucuma-foto-principal.jpg" alt="Jugo de Lúcuma con Leche" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Jugo de Lúcuma con Leche</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(47)</span>
+            </div>
             <p>Bebida cremosa y dulce preparada con lúcuma fresca y leche.</p>
-            <div class="price">S/ 7.00</div>
+            <div class="price-container">
+              <div class="price">7.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Jugo de Lúcuma con Leche', 7.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Jugo de Lúcuma con Leche')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://campograndeperu.com/wp-content/uploads/2024/03/jugo-de-fresa-con-leche-1024x683.webp" alt="Fresa con Leche" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Fresa con Leche</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(39)</span>
+            </div>
             <p>Batido refrescante de fresas frescas mezcladas con leche y un toque de azúcar.</p>
-            <div class="price">S/ 7.00</div>
+            <div class="price-container">
+              <div class="price">7.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Fresa con Leche', 7.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Fresa con Leche')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="menu-item">
+        <div class="menu-item" onclick="selectItem(this)">
           <img src="https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/88880ffa-c506-49c4-839a-f8456ccc5dd2/Derivates/a27a2a0a-65cc-4b6b-a7ed-ca70928ff3bb.jpg" alt="Agua de Piña con Canela" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Agua de Piña con Canela</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(28)</span>
+            </div>
             <p>Infusión fría de cáscara de piña y canela, ligeramente endulzada.</p>
-            <div class="price">Vaso S/ 4.00 | Jarra S/ 12.00</div>
+            <div class="price-container">
+              <div class="price">4.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Agua de Piña con Canela', 4.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Agua de Piña con Canela')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://sommelier.com.pe/wp-content/uploads/Chilcano-Foto-Promperu.jpg" alt="Chilcano de Pisco" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Chilcano de Pisco</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(51)</span>
+            </div>
+            <p>Una mezcla ligera y burbujeante de pisco, ginger ale y un toque de limón.</p>
+            <div class="price-container">
+              <div class="price">16.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Chilcano de Pisco', 16.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Chilcano de Pisco')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkE2BGB6RIxYFHbP6Pa8uIb9JVJ6qzT4V0ag&s" alt="Maracuyá Sour" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Maracuyá Sour</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <span>(63)</span>
+            </div>
+            <p>Una variante frutal del clásico Pisco Sour, incorporando el exótico sabor del maracuyá.</p>
+            <div class="price-container">
+              <div class="price">20.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Maracuyá Sour', 20.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Maracuyá Sour')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://i0.wp.com/pisco.net.pe/wp-content/uploads/2019/05/8.png?fit=400%2C400&ssl=1" alt="Capitán" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Capitán</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(37)</span>
+            </div>
+            <p>Un cóctel elegante que combina pisco y vermut rojo, resultando en una bebida suave y aromática.</p>
+            <div class="price-container">
+              <div class="price">17.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Capitán', 17.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Capitán')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://www.comeperuano.pe/wp-content/uploads/2022/10/receta-coctel-de-machu-picchu.jpg" alt="Machu Picchu" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Machu Picchu</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(29)</span>
+            </div>
+            <p>Cóctel en capas que presenta una atractiva combinación de granadina, jugo de naranja y licor de menta.</p>
+            <div class="price-container">
+              <div class="price">19.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Machu Picchu', 19.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Machu Picchu')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://cdn0.recetasgratis.net/es/posts/2/9/1/coctel_de_algarrobina_77192_600_square.jpg" alt="Algarrobina" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Algarrobina</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(42)</span>
+            </div>
+            <p>Bebida cremosa y dulce que mezcla pisco, leche evaporada, jarabe de algarrobo, huevo y canela.</p>
+            <div class="price-container">
+              <div class="price">18.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Algarrobina', 18.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Algarrobina')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://cdn.shopify.com/s/files/1/0527/0395/3072/files/20240626172337-pisco-punch.webp?v=1719422619&width=600&height=900" alt="Pisco Punch" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Pisco Punch</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(35)</span>
+            </div>
+            <p>Refrescante cóctel que combina pisco, jugo de piña y almíbar, ofreciendo una explosión tropical.</p>
+            <div class="price-container">
+              <div class="price">20.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Pisco Punch', 20.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Pisco Punch')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://polleriaslagranja.com/wp-content/uploads/2022/10/La-Granja-Real-Food-Chicken-Sangria-Jarra.png" alt="Sangría Peruana" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Sangría Peruana</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(47)</span>
+            </div>
+            <p>Versión local de la clásica sangría, mezclando vino tinto, pisco, frutas frescas y un toque de especias.</p>
+            <div class="price-container">
+              <div class="price">22.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Sangría Peruana', 22.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Sangría Peruana')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://supermercadosnacional.com/media/catalog/product/cache/afcac67a0d77755283578b677f040f2b/2/2/2220613-1.jpg" alt="Cusqueña Negra" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Cusqueña Negra</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="far fa-star star empty"></i>
+              <span>(58)</span>
+            </div>
+            <p>Cerveza artesanal peruana de color oscuro, con notas a maltas tostadas y un sabor suave y equilibrado.</p>
+            <div class="price-container">
+              <div class="price">12.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Cusqueña Negra', 12.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Cusqueña Negra')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item" onclick="selectItem(this)">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Canelazo.jpg/1200px-Canelazo.jpg" alt="Canelazo Andino" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Canelazo Andino</h3>
+            <div class="stars">
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star star"></i>
+              <i class="fas fa-star-half-alt star"></i>
+              <span>(33)</span>
+            </div>
+            <p>Bebida caliente tradicional de los Andes, preparada con pisco, agua de canela, clavo de olor y endulzada con panela.</p>
+            <div class="price-container">
+              <div class="price">15.00</div>
+              <div class="action-buttons">
+                <button class="btn btn-primary" onclick="event.stopPropagation();addToCart('Canelazo Andino', 15.00)"><i class="fas fa-cart-plus"></i> Ordenar</button>
+                <button class="btn btn-secondary" onclick="event.stopPropagation();showDetails('Canelazo Andino')"><i class="fas fa-info"></i></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Bebidas con Alcohol -->
-   
-      <div class="menu-section" id="alcoholic-drinks">
-  <h2>Bebidas con Alcohol</h2>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const alcoholicSection = document.getElementById('alcoholic-drinks');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          verifyAge();
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    if (alcoholicSection) {
-      observer.observe(alcoholicSection);
-    }
-  });
-
-  function verifyAge() {
-    const currentYear = new Date().getFullYear();
-    const birthYear = prompt("Para acceder a la sección de bebidas alcohólicas, por favor ingresa tu año de nacimiento:");
-    
-    // Si el usuario cancela o no ingresa nada, ocultar la sección
-    if (birthYear === null || birthYear === "") {
-      hideAlcoholicDrinks();
-      alert("No has ingresado tu año de nacimiento. No puedes acceder a esta sección.");
-      return;
-    }
-    
-    // Si no es un número válido, pedir de nuevo
-    if (isNaN(birthYear)) {
-      alert("Por favor ingresa un año válido (ejemplo: 1990)");
-      verifyAge(); // Volver a preguntar
-      return;
-    }
-    
-    const age = currentYear - parseInt(birthYear);
-    
-    if (age >= 18) {
-      alert("Puedes acceder a las bebidas con alcohol. ¡Disfruta con responsabilidad!");
-    } else {
-      hideAlcoholicDrinks();
-      alert("No puedes acceder a las bebidas con alcohol. Disfruta de nuestras opciones sin alcohol.");
-    }
-  }
-
-  function hideAlcoholicDrinks() {
-    const alcoholicSection = document.getElementById('alcoholic-drinks');
-    if (alcoholicSection) {
-      alcoholicSection.style.display = 'none'; // Oculta la sección
-    }
-  }
-</script>  
-</div>
-      <div class="menu-items">
-        <div class="menu-item">
-          <img src="https://sommelier.com.pe/wp-content/uploads/Chilcano-Foto-Promperu.jpg" alt="Chilcano de Pisco" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Chilcano de Pisco</h3>
-            <p>Una mezcla ligera y burbujeante de pisco, ginger ale y un toque de limón. Ideal para quienes buscan una bebida refrescante con el auténtico sabor del pisco.</p>
-            <div class="price">S/ 16.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkE2BGB6RIxYFHbP6Pa8uIb9JVJ6qzT4V0ag&s" alt="Maracuyá Sour" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Maracuyá Sour</h3>
-            <p>Una variante frutal del clásico Pisco Sour, incorporando el exótico sabor del maracuyá, que aporta una nota dulce y ácida a la vez.</p>
-            <div class="price">S/ 20.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://i0.wp.com/pisco.net.pe/wp-content/uploads/2019/05/8.png?fit=400%2C400&ssl=1" alt="Capitán" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Capitán</h3>
-            <p>Un cóctel elegante que combina pisco y vermut rojo, resultando en una bebida suave y aromática, perfecta para iniciar una velada.</p>
-            <div class="price">S/ 17.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://www.comeperuano.pe/wp-content/uploads/2022/10/receta-coctel-de-machu-picchu.jpg" alt="Machu Picchu" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Machu Picchu</h3>
-            <p>Cóctel en capas que presenta una atractiva combinación de granadina, jugo de naranja y licor de menta, creando un espectáculo visual y un sabor único.</p>
-            <div class="price">S/ 19.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://cdn0.recetasgratis.net/es/posts/2/9/1/coctel_de_algarrobina_77192_600_square.jpg" alt="Algarrobina" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Algarrobina</h3>
-            <p>Bebida cremosa y dulce que mezcla pisco, leche evaporada, jarabe de algarrobo, huevo y canela. Un postre líquido tradicional y reconfortante.</p>
-            <div class="price">S/ 18.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://cdn.shopify.com/s/files/1/0527/0395/3072/files/20240626172337-pisco-punch.webp?v=1719422619&width=600&height=900" alt="Pisco Punch" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Pisco Punch</h3>
-            <p>Refrescante cóctel que combina pisco, jugo de piña y almíbar, ofreciendo una explosión tropical en cada sorbo.</p>
-            <div class="price">S/ 20.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://polleriaslagranja.com/wp-content/uploads/2022/10/La-Granja-Real-Food-Chicken-Sangria-Jarra.png" alt="Sangría Peruana" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Sangría Peruana</h3>
-            <p>Versión local de la clásica sangría, mezclando vino tinto, pisco, frutas frescas y un toque de especias, ideal para compartir.</p>
-            <div class="price">S/ 22.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://supermercadosnacional.com/media/catalog/product/cache/afcac67a0d77755283578b677f040f2b/2/2/2220613-1.jpg" alt="Cusqueña Negra" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Cusqueña Negra</h3>
-            <p>Cerveza artesanal peruana de color oscuro, con notas a maltas tostadas y un sabor suave y equilibrado.</p>
-            <div class="price">S/ 12.00</div>
-          </div>
-        </div>
-
-        <div class="menu-item">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Canelazo.jpg/1200px-Canelazo.jpg" alt="Canelazo Andino" class="menu-item-image">
-          <div class="menu-item-content">
-            <h3>Canelazo Andino</h3>
-            <p>Bebida caliente tradicional de los Andes, preparada con pisco, agua de canela, clavo de olor y endulzada con panela. Perfecta para las noches frescas.</p>
-            <div class="price">S/ 15.00</div>
-          </div>
-        </div>
-      </div>
-    </d>
   </div>
 
   <!-- Footer -->
   <footer class="footer">
-    <p>Centro Restobar © 2025 | Todos los derechos reservados</p>
+    <p>© 2023 Centro Restobar - Todos los derechos reservados</p>
+    <p>Horario de atención: Lunes a Domingo de 12:00 pm a 11:00 pm</p>
+    <p>Dirección: Av. Ejemplo 123, Lima, Perú | Teléfono: (01) 123-4567</p>
   </footer>
 
   <script>
-    // Verificación de edad al llegar a la sección de bebidas con alcohol
-    document.addEventListener('DOMContentLoaded', function() {
-      const alcoholicSection = document.getElementById('alcoholic-drinks');
-      
-      // Observar cuando la sección de bebidas con alcohol entra en la vista
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            checkAge();
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      
-      if (alcoholicSection) {
-        observer.observe(alcoholicSection);
-      }
-    });
-
-    function checkAge() {
-      const birth
-      <script>
-  // Verificación de edad al llegar a la sección de bebidas con alcohol
-  document.addEventListener('DOMContentLoaded', function() {
-    const alcoholicSection = document.getElementById('alcoholic-drinks');
-    
-    // Observar cuando la sección de bebidas con alcohol entra en la vista
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          checkAge();
-          observer.unobserve(entry.target);
-        }
+    // Funciones JavaScript básicas
+    function selectItem(item) {
+      // Quitar selección de todos los items
+      document.querySelectorAll('.menu-item').forEach(el => {
+        el.classList.remove('selected');
       });
-    }, { threshold: 0.1 });
-    
-    if (alcoholicSection) {
-      observer.observe(alcoholicSection);
+      
+      // Seleccionar el item clickeado
+      item.classList.add('selected');
     }
-  });
 
-  function checkAge() {
-    const currentYear = new Date().getFullYear();
-    const birthYear = prompt("Para acceder a la sección de bebidas alcohólicas, por favor ingresa tu año de nacimiento:");
-    
-    if (birthYear === null || birthYear === "") {
-      alert("No has ingresado tu año de nacimiento. No podemos verificar tu edad.");
-      return;
+    function addToCart(itemName, price) {
+      alert(`Agregado al carrito: ${itemName} - S/${price.toFixed(2)}`);
+      // Aquí iría la lógica para agregar al carrito de compras
     }
-    
-    if (isNaN(birthYear) {
-      alert("Por favor ingresa un año válido (ejemplo: 1990)");
-      return;
-    }
-    
-    const age = currentYear - parseInt(birthYear);
-    
-    if (age >= 18) {
-      alert("Puedes escoger también las bebidas con alcohol. ¡Disfruta con responsabilidad!");
-    } else {
-      alert("No puedes escoger bebidas con alcohol. Por favor disfruta de nuestras deliciosas opciones sin alcohol.");
-      // Opcional: desplazar al usuario a otra sección
-      window.scrollTo(0, 0);
-    }
-  }
-</script>
 
+    function showDetails(itemName) {
+      alert(`Mostrando detalles de: ${itemName}`);
+      // Aquí iría la lógica para mostrar más detalles del platillo
+    }
+  </script>
+</body>
+</html>
