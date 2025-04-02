@@ -3,49 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Platos de Fondo - Centro Restobar</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="platos.js"></script>
+    <title>Platos Principales - Centro Restobar</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <img src="https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg" alt="Centro Restobar Logo" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="entradas.html">Entradas</a>
-            <a href="platos.html">Platos de Fondo</a>
-            <a href="bebidas.html">Bebidas</a>
-            <a href="#contacto">Contáctanos</a>
-        </nav>
+        <!-- Mismo header que index.html -->
     </header>
 
-    <main>
-        <h1>Platos de Fondo</h1>
-        <section class="menu">
-            <h2>Nuestros Platos de Fondo</h2>
-            <div class="menu-grid">
-                <div class="card">
-                    <img src="https://static.wixstatic.com/media/9755d8_b2d98eade0814b17a67fdf7d95888fdc~mv2.png/v1/fill/w_1280,h_720,al_c/9755d8_b2d98eade0814b17a67fdf7d95888fdc~mv2.png" alt="Lomo Saltado">
+    <main class="container menu-page">
+        <h1>Platos Principales</h1>
+        
+        <section class="menu-grid">
+            <article class="menu-card">
+                <img src="assets/images/platos/lomo-saltado.jpg" alt="Lomo Saltado">
+                <div class="card-content">
                     <h3>Lomo Saltado</h3>
-                    <p>Exquisito salteado de carne, cebolla y tomate con papas fritas y arroz.</p>
+                    <p>Salteado de carne con cebolla, tomate y papas fritas</p>
+                    <span class="price">S/35.00</span>
                 </div>
-                <div class="card">
-                    <img src="https://recetas.comohacer.cl/wp-content/uploads/2023/03/aji-de-gallina-con-arroz.jpg" alt="Ají de Gallina">
+            </article>
+            
+            <article class="menu-card">
+                <img src="assets/images/platos/aji-gallina.jpg" alt="Ají de Gallina">
+                <div class="card-content">
                     <h3>Ají de Gallina</h3>
-                    <p>Pechuga deshilachada en una cremosa salsa de ají amarillo, con arroz y papas.</p>
+                    <p>Pollo deshilachado en salsa cremosa de ají amarillo</p>
+                    <span class="price">S/28.00</span>
                 </div>
-                <div class="card">
-                    <img src="https://img-global.cpcdn.com/recipes/b024fdf7d2479a61/1200x630cq70/photo.jpg" alt="Arroz Chaufa">
-                    <h3>Arroz Chaufa</h3>
-                    <p>Arroz frito estilo chino-peruano con pollo, huevo y cebollita china.</p>
+            </article>
+            
+            <article class="menu-card">
+                <img src="assets/images/platos/ceviche.jpg" alt="Ceviche">
+                <div class="card-content">
+                    <h3>Ceviche</h3>
+                    <p>Pescado marinado en limón con ají y cebolla</p>
+                    <span class="price">S/30.00</span>
                 </div>
-                <div class="card">
-                    <img src="https://cocinaperuana.espaciolatino.com/recetas-de-cordero/img600/seco-cabrito.jpg" alt="Seco de Cordero">
-                    <h3>Seco de Cordero</h3>
-                    <p>Guiso de cordero en aderezo de culantro, acompañado de arroz y frijoles.</p>
+            </article>
+            
+            <article class="menu-card">
+                <img src="assets/images/platos/arroz-pollo.jpg" alt="Arroz con Pollo">
+                <div class="card-content">
+                    <h3>Arroz con Pollo</h3>
+                    <p>Arroz verde con presa de pollo y salsa criolla</p>
+                    <span class="price">S/27.00</span>
                 </div>
-            </div>
+            </article>
         </section>
     </main>
+
+    <footer>
+        <!-- Mismo footer que index.html -->
+    </footer>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
