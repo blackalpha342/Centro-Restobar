@@ -9,13 +9,31 @@
 </head>
 <body>
     <header>
-        <!-- Mismo header que index.html -->
+        <div class="container">
+            <a href="index.html">
+                <img src="assets/images/logo.svg" alt="Logo Centro Restobar" class="logo">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="entradas.html">Entradas</a></li>
+                    <li><a href="platos.html">Platos Principales</a></li>
+                    <li><a href="bebidas.html">Bebidas</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main class="container menu-page">
         <h1>Platos Principales</h1>
         
         <section class="menu-grid">
+            <!-- Lomo Saltado -->
             <article class="menu-card">
                 <img src="assets/images/platos/lomo-saltado.jpg" alt="Lomo Saltado">
                 <div class="card-content">
@@ -25,6 +43,7 @@
                 </div>
             </article>
             
+            <!-- Ají de Gallina -->
             <article class="menu-card">
                 <img src="assets/images/platos/aji-gallina.jpg" alt="Ají de Gallina">
                 <div class="card-content">
@@ -34,28 +53,125 @@
                 </div>
             </article>
             
+            <!-- Pachamanca -->
             <article class="menu-card">
-                <img src="assets/images/platos/ceviche.jpg" alt="Ceviche">
+                <img src="assets/images/platos/pachamanca.jpg" alt="Pachamanca">
                 <div class="card-content">
-                    <h3>Ceviche</h3>
-                    <p>Pescado marinado en limón con ají y cebolla</p>
+                    <h3>Pachamanca</h3>
+                    <p>Carnes y papas cocidas bajo tierra al estilo andino</p>
+                    <span class="price">S/45.00</span>
+                </div>
+            </article>
+            
+            <!-- Seco de Cabrito -->
+            <article class="menu-card">
+                <img src="assets/images/platos/seco-cabrito.jpg" alt="Seco de Cabrito">
+                <div class="card-content">
+                    <h3>Seco de Cabrito</h3>
+                    <p>Estofado de cabrito con frejoles y arroz</p>
+                    <span class="price">S/40.00</span>
+                </div>
+            </article>
+            
+            <!-- Tacu Tacu con Mariscos -->
+            <article class="menu-card">
+                <img src="assets/images/platos/tacu-tacu.jpg" alt="Tacu Tacu con Mariscos">
+                <div class="card-content">
+                    <h3>Tacu Tacu con Mariscos</h3>
+                    <p>Arroz y frejoles dorados con mix de mariscos</p>
+                    <span class="price">S/38.00</span>
+                </div>
+            </article>
+            
+            <!-- Pescado a la Plancha -->
+            <article class="menu-card">
+                <img src="assets/images/platos/pescado-plancha.jpg" alt="Pescado a la Plancha">
+                <div class="card-content">
+                    <h3>Pescado a la Plancha con Tacu Tacu</h3>
+                    <p>Filete de pescado con tacu tacu crocante</p>
+                    <span class="price">S/36.00</span>
+                </div>
+            </article>
+            
+            <!-- Ceviche de Pescado -->
+            <article class="menu-card">
+                <img src="assets/images/platos/ceviche.jpg" alt="Ceviche de Pescado">
+                <div class="card-content">
+                    <h3>Ceviche de Pescado</h3>
+                    <p>Pescado fresco marinado en limón con ají y especias</p>
                     <span class="price">S/30.00</span>
                 </div>
             </article>
             
+            <!-- Arroz con Pollo -->
             <article class="menu-card">
                 <img src="assets/images/platos/arroz-pollo.jpg" alt="Arroz con Pollo">
                 <div class="card-content">
                     <h3>Arroz con Pollo</h3>
-                    <p>Arroz verde con presa de pollo y salsa criolla</p>
+                    <p>Arroz verde sazonado con culantro y presa de pollo</p>
                     <span class="price">S/27.00</span>
+                </div>
+            </article>
+            
+            <!-- Carapulcra -->
+            <article class="menu-card">
+                <img src="assets/images/platos/carapulcra.jpg" alt="Carapulcra">
+                <div class="card-content">
+                    <h3>Carapulcra</h3>
+                    <p>Guiso tradicional de papa seca con carnes</p>
+                    <span class="price">S/30.00</span>
+                </div>
+            </article>
+            
+            <!-- Rocoto Relleno -->
+            <article class="menu-card">
+                <img src="assets/images/platos/rocoto-relleno.jpg" alt="Rocoto Relleno">
+                <div class="card-content">
+                    <h3>Rocoto Relleno</h3>
+                    <p>Rocoto desvenado relleno de carne molida y queso</p>
+                    <span class="price">S/32.00</span>
+                </div>
+            </article>
+            
+            <!-- Arroz Chaufa -->
+            <article class="menu-card">
+                <img src="assets/images/platos/arroz-chaufa.jpg" alt="Arroz Chaufa">
+                <div class="card-content">
+                    <h3>Arroz Chaufa</h3>
+                    <p>Arroz frito al estilo chino-peruano con pollo y huevo</p>
+                    <span class="price">S/22.00</span>
+                </div>
+            </article>
+            
+            <!-- Chupe de Camarones -->
+            <article class="menu-card">
+                <img src="assets/images/platos/chupe-camarones.jpg" alt="Chupe de Camarones">
+                <div class="card-content">
+                    <h3>Chupe de Camarones</h3>
+                    <p>Sopa contundente de camarones con leche y huevo</p>
+                    <span class="price">S/42.00</span>
                 </div>
             </article>
         </section>
     </main>
 
     <footer>
-        <!-- Mismo footer que index.html -->
+        <div class="container">
+            <div class="footer-info">
+                <h3>Contacto</h3>
+                <p>Av. Ejemplo 123, Lima, Perú</p>
+                <p>Teléfono: (01) 123-4567</p>
+                <p>Email: info@centrorestobar.com</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Centro Restobar. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script src="js/app.js"></script>
