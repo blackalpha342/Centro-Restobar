@@ -1,7 +1,7 @@
 # Centro-Restobar
 # Centro Restobar - Sitio Web
 
-![Logo]([assets/images/logo_centro.svg](https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg))
+https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg
 
 Sitio web oficial del Centro Restobar con menú completo y sistema de verificación de edad.
 
