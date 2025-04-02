@@ -1,33 +1,63 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centro Restobar - Bebidas</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bebidas - Centro Restobar</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <!-- Mismo header y nav que index.html -->
-  
-  <div class="menu-container">
-    <!-- Bebidas sin alcohol -->
-    <div class="menu-section">
-      <h2>Bebidas sin Alcohol</h2>
-      <div class="menu-items">
-        <!-- Items de bebidas sin alcohol -->
-      </div>
-    </div>
+    <header>
+        <!-- Mismo header que index.html -->
+    </header>
 
-    <!-- Bebidas con alcohol -->
-    <div class="menu-section" id="alcoholic-drinks">
-      <h2>Bebidas con Alcohol</h2>
-      <div class="menu-items" id="alcoholic-items">
-        <!-- Items de bebidas con alcohol -->
-      </div>
-    </div>
-  </div>
+    <main class="container menu-page">
+        <h1>Nuestras Bebidas</h1>
+        
+        <section class="menu-grid">
+            <article class="menu-card">
+                <img src="assets/images/bebidas/pisco-sour.jpg" alt="Pisco Sour">
+                <div class="card-content">
+                    <h3>Pisco Sour</h3>
+                    <p>Nuestro cóctel bandera con limón y clara de huevo</p>
+                    <span class="price">S/18.00</span>
+                </div>
+            </article>
+            
+            <article class="menu-card">
+                <img src="assets/images/bebidas/chicha-morada.jpg" alt="Chicha Morada">
+                <div class="card-content">
+                    <h3>Chicha Morada</h3>
+                    <p>Refresco tradicional de maíz morado</p>
+                    <span class="price">S/8.00</span>
+                </div>
+            </article>
+            
+            <article class="menu-card">
+                <img src="assets/images/bebidas/inca-kola.jpg" alt="Inca Kola">
+                <div class="card-content">
+                    <h3>Inca Kola</h3>
+                    <p>La bebida gaseosa más popular del Perú</p>
+                    <span class="price">S/6.00</span>
+                </div>
+            </article>
+            
+            <article class="menu-card">
+                <img src="assets/images/bebidas/maracuya-sour.jpg" alt="Maracuyá Sour">
+                <div class="card-content">
+                    <h3>Maracuyá Sour</h3>
+                    <p>Variante tropical de nuestro pisco sour</p>
+                    <span class="price">S/20.00</span>
+                </div>
+            </article>
+        </section>
+    </main>
 
-  <!-- Mismo footer que index.html -->
-  <script src="js/app.js"></script>
+    <footer>
+        <!-- Mismo footer que index.html -->
+    </footer>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
