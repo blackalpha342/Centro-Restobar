@@ -9,53 +9,255 @@
 </head>
 <body>
     <header>
-        <!-- Mismo header que index.html -->
+        <div class="container">
+            <a href="index.html">
+                <img src="assets/images/logo.svg" alt="Logo Centro Restobar" class="logo">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="entradas.html">Entradas</a></li>
+                    <li><a href="platos.html">Platos Principales</a></li>
+                    <li><a href="bebidas.html">Bebidas</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main class="container menu-page">
         <h1>Nuestras Bebidas</h1>
         
         <section class="menu-grid">
-            <article class="menu-card">
-                <img src="assets/images/bebidas/pisco-sour.jpg" alt="Pisco Sour">
-                <div class="card-content">
-                    <h3>Pisco Sour</h3>
-                    <p>Nuestro cóctel bandera con limón y clara de huevo</p>
-                    <span class="price">S/18.00</span>
-                </div>
-            </article>
+            <!-- Bebidas sin alcohol -->
+            <h2 class="section-title">Bebidas sin Alcohol</h2>
             
+            <!-- Chicha Morada -->
             <article class="menu-card">
                 <img src="assets/images/bebidas/chicha-morada.jpg" alt="Chicha Morada">
                 <div class="card-content">
                     <h3>Chicha Morada</h3>
-                    <p>Refresco tradicional de maíz morado</p>
-                    <span class="price">S/8.00</span>
+                    <p>Refrescante bebida de maíz morado con especias</p>
+                    <span class="price">S/5.00</span>
                 </div>
             </article>
             
+            <!-- Limonada de Hierba Luisa -->
             <article class="menu-card">
-                <img src="assets/images/bebidas/inca-kola.jpg" alt="Inca Kola">
+                <img src="assets/images/bebidas/limonada-hierba-luisa.jpg" alt="Limonada de Hierba Luisa">
                 <div class="card-content">
-                    <h3>Inca Kola</h3>
-                    <p>La bebida gaseosa más popular del Perú</p>
+                    <h3>Limonada de Hierba Luisa</h3>
+                    <p>Limonada infusionada con hierba luisa</p>
+                    <span class="price">S/4.00</span>
+                </div>
+            </article>
+            
+            <!-- Emoliente Andino -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/emoliente.jpg" alt="Emoliente Andino">
+                <div class="card-content">
+                    <h3>Emoliente Andino</h3>
+                    <p>Bebida caliente de cebada, linaza y hierbas</p>
                     <span class="price">S/6.00</span>
                 </div>
             </article>
             
+            <!-- Agua de Cebada -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/agua-cebada.jpg" alt="Agua de Cebada">
+                <div class="card-content">
+                    <h3>Agua de Cebada</h3>
+                    <p>Refresco frío de cebada tostada con limón</p>
+                    <span class="price">S/4.00</span>
+                </div>
+            </article>
+            
+            <!-- Maracuyá Sour sin alcohol -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/maracuya-sour.jpg" alt="Maracuyá Sour sin alcohol">
+                <div class="card-content">
+                    <h3>Maracuyá Sour sin alcohol</h3>
+                    <p>Bebida espumosa con jugo de maracuyá</p>
+                    <span class="price">S/8.00</span>
+                </div>
+            </article>
+            
+            <!-- Refresco de Camu Camu -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/camu-camu.jpg" alt="Refresco de Camu Camu">
+                <div class="card-content">
+                    <h3>Refresco de Camu Camu</h3>
+                    <p>Jugo natural de fruta amazónica rica en vitamina C</p>
+                    <span class="price">S/6.00</span>
+                </div>
+            </article>
+            
+            <!-- Mate de Coca -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/mate-coca.jpg" alt="Mate de Coca">
+                <div class="card-content">
+                    <h3>Mate de Coca</h3>
+                    <p>Infusión caliente de hojas de coca</p>
+                    <span class="price">S/5.00</span>
+                </div>
+            </article>
+            
+            <!-- Jugo de Lúcuma con Leche -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/lucuma-leche.jpg" alt="Jugo de Lúcuma con Leche">
+                <div class="card-content">
+                    <h3>Jugo de Lúcuma con Leche</h3>
+                    <p>Bebida cremosa y dulce de lúcuma</p>
+                    <span class="price">S/7.00</span>
+                </div>
+            </article>
+            
+            <!-- Fresa con Leche -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/fresa-leche.jpg" alt="Fresa con Leche">
+                <div class="card-content">
+                    <h3>Fresa con Leche</h3>
+                    <p>Batido refrescante de fresas con leche</p>
+                    <span class="price">S/7.00</span>
+                </div>
+            </article>
+            
+            <!-- Agua de Piña con Canela -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/agua-pina.jpg" alt="Agua de Piña con Canela">
+                <div class="card-content">
+                    <h3>Agua de Piña con Canela</h3>
+                    <p>Infusión fría de cáscara de piña y canela</p>
+                    <span class="price">S/4.00</span>
+                </div>
+            </article>
+            
+            <!-- Bebidas con alcohol -->
+            <h2 class="section-title">Bebidas con Alcohol</h2>
+            
+            <!-- Pisco Sour -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/pisco-sour.jpg" alt="Pisco Sour">
+                <div class="card-content">
+                    <h3>Pisco Sour</h3>
+                    <p>Cóctel bandera con pisco, limón y clara de huevo</p>
+                    <span class="price">S/18.00</span>
+                </div>
+            </article>
+            
+            <!-- Chilcano de Pisco -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/chilcano.jpg" alt="Chilcano de Pisco">
+                <div class="card-content">
+                    <h3>Chilcano de Pisco</h3>
+                    <p>Pisco con ginger ale y toque de limón</p>
+                    <span class="price">S/16.00</span>
+                </div>
+            </article>
+            
+            <!-- Maracuyá Sour -->
             <article class="menu-card">
                 <img src="assets/images/bebidas/maracuya-sour.jpg" alt="Maracuyá Sour">
                 <div class="card-content">
                     <h3>Maracuyá Sour</h3>
-                    <p>Variante tropical de nuestro pisco sour</p>
+                    <p>Variante tropical del pisco sour con maracuyá</p>
                     <span class="price">S/20.00</span>
+                </div>
+            </article>
+            
+            <!-- Capitán -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/capitan.jpg" alt="Capitán">
+                <div class="card-content">
+                    <h3>Capitán</h3>
+                    <p>Pisco con vermut rojo, bebida elegante y aromática</p>
+                    <span class="price">S/17.00</span>
+                </div>
+            </article>
+            
+            <!-- Machu Picchu -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/machu-picchu.jpg" alt="Machu Picchu">
+                <div class="card-content">
+                    <h3>Machu Picchu</h3>
+                    <p>Cóctel en capas con granadina, jugo de naranja y menta</p>
+                    <span class="price">S/19.00</span>
+                </div>
+            </article>
+            
+            <!-- Algarrobina -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/algarrobina.jpg" alt="Algarrobina">
+                <div class="card-content">
+                    <h3>Algarrobina</h3>
+                    <p>Bebida cremosa con pisco, leche y jarabe de algarrobo</p>
+                    <span class="price">S/18.00</span>
+                </div>
+            </article>
+            
+            <!-- Pisco Punch -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/pisco-punch.jpg" alt="Pisco Punch">
+                <div class="card-content">
+                    <h3>Pisco Punch</h3>
+                    <p>Pisco con jugo de piña y almíbar, explosión tropical</p>
+                    <span class="price">S/20.00</span>
+                </div>
+            </article>
+            
+            <!-- Sangría Peruana -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/sangria.jpg" alt="Sangría Peruana">
+                <div class="card-content">
+                    <h3>Sangría Peruana</h3>
+                    <p>Vino tinto con pisco, frutas frescas y especias</p>
+                    <span class="price">S/22.00</span>
+                </div>
+            </article>
+            
+            <!-- Cusqueña Negra -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/cusquena-negra.jpg" alt="Cusqueña Negra">
+                <div class="card-content">
+                    <h3>Cusqueña Negra</h3>
+                    <p>Cerveza artesanal peruana de color oscuro</p>
+                    <span class="price">S/12.00</span>
+                </div>
+            </article>
+            
+            <!-- Canelazo Andino -->
+            <article class="menu-card">
+                <img src="assets/images/bebidas/canelazo.jpg" alt="Canelazo Andino">
+                <div class="card-content">
+                    <h3>Canelazo Andino</h3>
+                    <p>Bebida caliente con pisco, canela y clavo de olor</p>
+                    <span class="price">S/15.00</span>
                 </div>
             </article>
         </section>
     </main>
 
     <footer>
-        <!-- Mismo footer que index.html -->
+        <div class="container">
+            <div class="footer-info">
+                <h3>Contacto</h3>
+                <p>Av. Ejemplo 123, Lima, Perú</p>
+                <p>Teléfono: (01) 123-4567</p>
+                <p>Email: info@centrorestobar.com</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Centro Restobar. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script src="js/app.js"></script>
