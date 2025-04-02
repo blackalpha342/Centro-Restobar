@@ -3,49 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bebidas - Centro Restobar</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="bebidas.js"></script>
+    <title>Bebidas - Menú Peruano</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            color: #d35400;
+            text-align: center;
+            border-bottom: 2px solid #d35400;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #e67e22;
+            margin-top: 30px;
+            border-left: 4px solid #e67e22;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #f39c12;
+        }
+        .bebida {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+        .bebida img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 20px;
+        }
+        .bebida-info {
+            flex: 1;
+        }
+        .precio {
+            font-weight: bold;
+            color: #d35400;
+            font-size: 1.1em;
+        }
+        .sin-alcohol {
+            background-color: #e8f8f5;
+        }
+        .con-alcohol {
+            background-color: #fef9e7;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <img src="https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg" alt="Centro Restobar Logo" class="logo">
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="entradas.html">Entradas</a>
-            <a href="platos.html">Platos de Fondo</a>
-            <a href="bebidas.html">Bebidas</a>
-            <a href="#contacto">Contáctanos</a>
-        </nav>
-    </header>
+    <h1>🍹 Bebidas</h1>
 
-    <main>
-        <h1>Bebidas</h1>
-        <section class="menu">
-            <h2>Nuestras Bebidas</h2>
-            <div class="menu-grid">
-                <div class="card">
-                    <img src="https://www.lovferments.com/wp-content/uploads/2021/04/beb_chicha.jpg" alt="Chicha Morada">
-                    <h3>Chicha Morada</h3>
-                    <p>Refrescante bebida a base de maíz morado, con toques de piña, canela y clavo de olor.</p>
-                </div>
-                <div class="card">
-                    <img src="https://png.pngtree.com/thumb_back/fw800/background/20230530/pngtree-fresh-iced-passion-fruit-juice-drink-for-summertime-photo-image_2795663.jpg" alt="Jugo de Maracuyá">
-                    <h3>Jugo de Maracuyá</h3>
-                    <p>Jugo natural de maracuyá con el equilibrio perfecto entre dulce y ácido.</p>
-                </div>
-                <div class="card">
-                    <img src="https://images.ctfassets.net/0e6jqcgsrcye/60zwph2FRXO1tTbnDTMABm/b99df13d53b9f269900ead0ca31d614c/mangochililemonade_thumbnail.jpg" alt="Limonada de Mango">
-                    <h3>Limonada de Mango</h3>
-                    <p>Refrescante combinación de mango y limón, ideal para los días calurosos.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn0.recetasgratis.net/es/posts/7/1/8/emoliente_peruano_76817_orig.jpg" alt="Emoliente">
-                    <h3>Emoliente</h3>
-                    <p>Bebida tradicional peruana hecha con cebada, linaza y hierbas medicinales.</p>
-                </div>
+    <section class="sin-alcohol">
+        <h2>Sin Alcohol</h2>
+
+        <div class="bebida">
+            <img src="https://www.lovferments.com/wp-content/uploads/2021/04/beb_chicha.jpg" alt="Chicha Morada">
+            <div class="bebida-info">
+                <h3>Chicha Morada</h3>
+                <p>Refrescante bebida a base de maíz morado, aromatizada con canela y clavo de olor, endulzada al gusto.</p>
+                <p class="precio">Vaso S/ 5.00 / Jarra S/ 15.00</p>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <div class="bebida">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwtLQC2e3b20gMg-nPG07Vb3HtUT6NSbjEEw&s" alt="Limonada de Hierba Luisa">
+            <div class="bebida-info">
+                <h3>Limonada de Hierba Luisa</h3>
+                <p>Limonada tradicional infusionada con hierba luisa, ofreciendo un toque cítrico y herbal.</p>
+                <p class="precio">Vaso S/ 4.00 / Jarra S/ 12.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRUkZ7MzMr19cF2aa7M1MP78xp433KHyJI6Q&s" alt="Emoliente Andino">
+            <div class="bebida-info">
+                <h3>Emoliente Andino</h3>
+                <p>Bebida caliente y reconfortante elaborada con cebada, linaza y hierbas medicinales.</p>
+                <p class="precio">S/ 6.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://okdiario.com/img/recetas/2017/08/17/agua-de-cebada-2.jpg" alt="Agua de Cebada">
+            <div class="bebida-info">
+                <h3>Agua de Cebada</h3>
+                <p>Refresco frío preparado a base de cebada tostada, ligeramente endulzado y aromatizado con limón.</p>
+                <p class="precio">Vaso S/ 4.00 / Jarra S/ 12.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/39bd5378ac4038a37c7fdaa4bd865598/Derivates/a711495123992a20dacf98c637816c87e5d735f2.jpg" alt="Maracuyá Sour sin alcohol">
+            <div class="bebida-info">
+                <h3>Maracuyá Sour sin alcohol</h3>
+                <p>Bebida espumosa y ácida elaborada con jugo de maracuyá fresco, clara de huevo y jarabe de goma.</p>
+                <p class="precio">S/ 8.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://comidasperuanas.net/wp-content/uploads/2023/11/Receta-de-Refresco-de-Camu-Camu.jpg" alt="Refresco de Camu Camu">
+            <div class="bebida-info">
+                <h3>Refresco de Camu Camu</h3>
+                <p>Jugo natural de camu camu, fruta amazónica rica en vitamina C, servido frío.</p>
+                <p class="precio">Vaso S/ 6.00 / Jarra S/ 18.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/FJ5GFKSDMNG47PFSMK7UFJAVBU.jpg" alt="Mate de Coca">
+            <div class="bebida-info">
+                <h3>Mate de Coca</h3>
+                <p>Infusión caliente de hojas de coca, tradicional de los Andes, ideal para la digestión.</p>
+                <p class="precio">S/ 5.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://img-global.cpcdn.com/recipes/b4cc360d0d77e535/680x482cq70/batido-de-lucuma-foto-principal.jpg" alt="Jugo de Lúcuma con Leche">
+            <div class="bebida-info">
+                <h3>Jugo de Lúcuma con Leche</h3>
+                <p>Bebida cremosa y dulce preparada con lúcuma fresca y leche.</p>
+                <p class="precio">S/ 7.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://campograndeperu.com/wp-content/uploads/2024/03/jugo-de-fresa-con-leche-1024x683.webp" alt="Fresa con Leche">
+            <div class="bebida-info">
+                <h3>Fresa con Leche</h3>
+                <p>Batido refrescante de fresas frescas mezcladas con leche y un toque de azúcar.</p>
+                <p class="precio">S/ 7.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/88880ffa-c506-49c4-839a-f8456ccc5dd2/Derivates/a27a2a0a-65cc-4b6b-a7ed-ca70928ff3bb.jpg" alt="Agua de Piña con Canela">
+            <div class="bebida-info">
+                <h3>Agua de Piña con Canela</h3>
+                <p>Infusión fría de cáscara de piña y canela, ligeramente endulzada.</p>
+                <p class="precio">Vaso S/ 4.00 / Jarra S/ 12.00</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="con-alcohol">
+        <h2>Con Alcohol</h2>
+
+        <div class="bebida">
+            <img src="https://sommelier.com.pe/wp-content/uploads/Chilcano-Foto-Promperu.jpg" alt="Chilcano de Pisco">
+            <div class="bebida-info">
+                <h3>Chilcano de Pisco</h3>
+                <p>Una mezcla ligera y burbujeante de pisco, ginger ale y un toque de limón. Ideal para quienes buscan una bebida refrescante con el auténtico sabor del pisco.</p>
+                <p class="precio">S/ 16.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkE2BGB6RIxYFHbP6Pa8uIb9JVJ6qzT4V0ag&s" alt="Maracuyá Sour">
+            <div class="bebida-info">
+                <h3>Maracuyá Sour</h3>
+                <p>Una variante frutal del clásico Pisco Sour, incorporando el exótico sabor del maracuyá, que aporta una nota dulce y ácida a la vez.</p>
+                <p class="precio">S/ 20.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://i0.wp.com/pisco.net.pe/wp-content/uploads/2019/05/8.png?fit=400%2C400&ssl=1" alt="Capitán">
+            <div class="bebida-info">
+                <h3>Capitán</h3>
+                <p>Un cóctel elegante que combina pisco y vermut rojo, resultando en una bebida suave y aromática, perfecta para iniciar una velada.</p>
+                <p class="precio">S/ 17.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://www.comeperuano.pe/wp-content/uploads/2022/10/receta-coctel-de-machu-picchu.jpg" alt="Machu Picchu">
+            <div class="bebida-info">
+                <h3>Machu Picchu</h3>
+                <p>Cóctel en capas que presenta una atractiva combinación de granadina, jugo de naranja y licor de menta, creando un espectáculo visual y un sabor único.</p>
+                <p class="precio">S/ 19.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://cdn0.recetasgratis.net/es/posts/2/9/1/coctel_de_algarrobina_77192_600_square.jpg" alt="Algarrobina">
+            <div class="bebida-info">
+                <h3>Algarrobina</h3>
+                <p>Bebida cremosa y dulce que mezcla pisco, leche evaporada, jarabe de algarrobo, huevo y canela. Un postre líquido tradicional y reconfortante.</p>
+                <p class="precio">S/ 18.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://cdn.shopify.com/s/files/1/0527/0395/3072/files/20240626172337-pisco-punch.webp?v=1719422619&width=600&height=900" alt="Pisco Punch">
+            <div class="bebida-info">
+                <h3>Pisco Punch</h3>
+                <p>Refrescante cóctel que combina pisco, jugo de piña y almíbar, ofreciendo una explosión tropical en cada sorbo.</p>
+                <p class="precio">S/ 20.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://polleriaslagranja.com/wp-content/uploads/2022/10/La-Granja-Real-Food-Chicken-Sangria-Jarra.png" alt="Sangría Peruana">
+            <div class="bebida-info">
+                <h3>Sangría Peruana</h3>
+                <p>Versión local de la clásica sangría, mezclando vino tinto, pisco, frutas frescas y un toque de especias, ideal para compartir.</p>
+                <p class="precio">S/ 22.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://supermercadosnacional.com/media/catalog/product/cache/afcac67a0d77755283578b677f040f2b/2/2/2220613-1.jpg" alt="Cusqueña Negra">
+            <div class="bebida-info">
+                <h3>Cusqueña Negra</h3>
+                <p>Cerveza artesanal peruana de color oscuro, con notas a maltas tostadas y un sabor suave y equilibrado.</p>
+                <p class="precio">S/ 12.00</p>
+            </div>
+        </div>
+
+        <div class="bebida">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Canelazo.jpg/1200px-Canelazo.jpg" alt="Canelazo Andino">
+            <div class="bebida-info">
+                <h3>Canelazo Andino</h3>
+                <p>Bebida caliente tradicional de los Andes, preparada con pisco, agua de canela, clavo de olor y endulzada con panela. Perfecta para las noches frescas.</p>
+                <p class="precio">S/ 15.00</p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
