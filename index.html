@@ -30,6 +30,67 @@
       line-height: 1.6;
     }
 
+    /* Age verification modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal-content {
+      background-color: var(--light-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+    }
+    
+    .modal-content h2 {
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+    
+    .modal-content p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .date-picker {
+      margin: 1rem 0;
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background-color: #222;
+      color: var(--white);
+      width: 100%;
+      font-size: 1rem;
+    }
+    
+    .verify-btn {
+      background: linear-gradient(135deg, #ff0000 0%, #9900cc 100%);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+    
+    .verify-btn:hover {
+      background: linear-gradient(135deg, #cc0000 0%, #7700aa 100%);
+      transform: translateY(-2px);
+    }
+    
     /* Header */
     .header {
       background: linear-gradient(135deg, #ff0000 0%, #9900cc 100%);
@@ -136,6 +197,28 @@
       width: 100%;
       position: relative;
       border: 3px solid transparent;
+    }
+    
+    .menu-item.alcoholic {
+      position: relative;
+    }
+    
+    .menu-item.alcoholic::after {
+      content: 'Bebida alcohólica (+18)';
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(255, 0, 0, 0.8);
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    
+    .menu-item.minor-restricted {
+      opacity: 0.6;
+      pointer-events: none;
     }
 
     .menu-item.selected {
@@ -296,8 +379,19 @@
   </style>
 </head>
 <body>
+  <!-- Age Verification Modal -->
+  <div class="modal-overlay" id="ageModal">
+    <div class="modal-content">
+      <h2>Verificación de Edad</h2>
+      <p>Para acceder a nuestro menú completo, por favor confirma que eres mayor de edad ingresando tu fecha de nacimiento:</p>
+      <input type="date" class="date-picker" id="birthDate" max="">
+      <button class="verify-btn" onclick="verifyAge()">Verificar Edad</button>
+      <p id="errorMessage" style="color: #ff4444; display: none;">Debes ser mayor de 18 años para acceder a todas las secciones del menú.</p>
+    </div>
+  </div>
+
   <!-- Header -->
-  <header class="header">
+  <header class="header" style="display: none;">
     <img src="https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg" alt="Logo Centro Restobar">
     <h1>Bienvenidos a Centro Restobar</h1>
     <p>El lugar donde la comida y la diversión se encuentran</p>
@@ -313,7 +407,7 @@
   </header>
 
   <!-- Menú Principal -->
-  <div class="menu-container">
+  <div class="menu-container" style="display: none;">
     <!-- Entradas -->
     <div class="menu-section">
       <h2>Entradas</h2>
@@ -468,7 +562,7 @@
               <i class="fas fa-star star"></i>
               <span>(78)</span>
             </div>
-            <p>Pescado fresco marinado en jugo de limón, mezclado con ají, cebolla roja y cilantro, acompañado de camote y choclo.</p>
+            <p>Pescado fresco marinado en jugo de limón, mezclado con ají, cebolla roja y cilantro, servido con camote, choclo y cancha serrana.</p>
             <div class="price-container">
               <div class="price">25.00</div>
               <div class="action-buttons">
@@ -997,7 +1091,8 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <!-- Bebidas alcohólicas (se marcan con clase alcoholic) -->
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://sommelier.com.pe/wp-content/uploads/Chilcano-Foto-Promperu.jpg" alt="Chilcano de Pisco" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Chilcano de Pisco</h3>
@@ -1020,7 +1115,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkE2BGB6RIxYFHbP6Pa8uIb9JVJ6qzT4V0ag&s" alt="Maracuyá Sour" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Maracuyá Sour</h3>
@@ -1043,7 +1138,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://i0.wp.com/pisco.net.pe/wp-content/uploads/2019/05/8.png?fit=400%2C400&ssl=1" alt="Capitán" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Capitán</h3>
@@ -1066,7 +1161,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://www.comeperuano.pe/wp-content/uploads/2022/10/receta-coctel-de-machu-picchu.jpg" alt="Machu Picchu" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Machu Picchu</h3>
@@ -1089,7 +1184,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://cdn0.recetasgratis.net/es/posts/2/9/1/coctel_de_algarrobina_77192_600_square.jpg" alt="Algarrobina" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Algarrobina</h3>
@@ -1112,7 +1207,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://cdn.shopify.com/s/files/1/0527/0395/3072/files/20240626172337-pisco-punch.webp?v=1719422619&width=600&height=900" alt="Pisco Punch" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Pisco Punch</h3>
@@ -1135,7 +1230,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://polleriaslagranja.com/wp-content/uploads/2022/10/La-Granja-Real-Food-Chicken-Sangria-Jarra.png" alt="Sangría Peruana" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Sangría Peruana</h3>
@@ -1158,7 +1253,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://supermercadosnacional.com/media/catalog/product/cache/afcac67a0d77755283578b677f040f2b/2/2/2220613-1.jpg" alt="Cusqueña Negra" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Cusqueña Negra</h3>
@@ -1181,7 +1276,7 @@
           </div>
         </div>
 
-        <div class="menu-item" onclick="selectItem(this)">
+        <div class="menu-item alcoholic" onclick="selectItem(this)">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Canelazo.jpg/1200px-Canelazo.jpg" alt="Canelazo Andino" class="menu-item-image">
           <div class="menu-item-content">
             <h3>Canelazo Andino</h3>
@@ -1208,13 +1303,55 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" style="display: none;">
     <p>© 2023 Centro Restobar - Todos los derechos reservados</p>
     <p>Horario de atención: Lunes a Domingo de 12:00 pm a 11:00 pm</p>
     <p>Dirección: Av. Ejemplo 123, Lima, Perú | Teléfono: (01) 123-4567</p>
   </footer>
 
   <script>
+    // Configurar la fecha máxima para el selector de fecha (hoy)
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('birthDate').max = today;
+    });
+
+    // Función para verificar la edad
+    function verifyAge() {
+      const birthDate = new Date(document.getElementById('birthDate').value);
+      const today = new Date();
+      
+      // Calcular edad
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      
+      if (age >= 18) {
+        // Usuario mayor de edad
+        document.getElementById('ageModal').style.display = 'none';
+        document.querySelector('.header').style.display = 'block';
+        document.querySelector('.menu-container').style.display = 'block';
+        document.querySelector('.footer').style.display = 'block';
+      } else {
+        // Usuario menor de edad
+        document.getElementById('errorMessage').style.display = 'block';
+        
+        // Mostrar solo el contenido no alcohólico
+        document.getElementById('ageModal').style.display = 'none';
+        document.querySelector('.header').style.display = 'block';
+        document.querySelector('.menu-container').style.display = 'block';
+        document.querySelector('.footer').style.display = 'block';
+        
+        // Deshabilitar bebidas alcohólicas
+        document.querySelectorAll('.alcoholic').forEach(item => {
+          item.classList.add('minor-restricted');
+        });
+      }
+    }
+
     // Funciones JavaScript básicas
     function selectItem(item) {
       // Quitar selección de todos los items
