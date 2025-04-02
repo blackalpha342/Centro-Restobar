@@ -1,148 +1,729 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Restobar</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        body {
-            background: black;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro Restobar - Menú Completo</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Estilos generales optimizados */
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #27ae60;
+      --text-color: #333;
+      --light-bg: #f8f5f2;
+      --white: #fff;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        header {
-            background: url('https://i0.wp.com/placeres.pe/wp-content/uploads/2024/01/7-scaled.jpg?fit=2560%2C1707&ssl=1') no-repeat center center/cover;
-            width: 100%;
-            padding: 60px 0;
-        }
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
 
-        h1, p, label, button {
-            text-shadow: 3px 3px 6px black;
-            color: white;
-        }
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, #4a6491 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 3rem 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
 
-        .container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            width: 90%;
-            max-width: 400px;
-            transition: all 0.5s ease-in-out;
-        }
+    .header img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
 
-        .logo {
-            width: 150px;
-            margin-bottom: 10px;
-        }
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
 
-        .menu-buttons {
-            margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .header p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
 
-        .menu-buttons button {
-            background: yellow;
-            border: 3px solid black;
-            padding: 15px 25px;
-            margin: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 22px;
-            width: 85%;
-            max-width: 350px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px black;
-            transition: all 0.3s ease-in-out;
-        }
+    /* Botones redes sociales */
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
 
-        .menu-buttons button:hover {
-            background: #ffcc00;
-            transform: scale(1.1);
-        }
+    .social-buttons a {
+      text-decoration: none;
+      color: var(--white);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
 
-        .social-icons {
-            margin-top: 20px;
-        }
+    .social-buttons a:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-3px);
+    }
 
-        .social-icons a {
-            color: white;
-            font-size: 24px;
-            margin: 10px;
-            text-decoration: none;
-            transition: transform 0.3s ease-in-out;
-        }
+    /* Contenedor del menú */
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        .social-icons a:hover {
-            transform: scale(1.2);
-            color: #ffcc00;
-        }
+    /* Secciones del menú */
+    .menu-section {
+      margin-bottom: 3rem;
+    }
 
-        .hidden {
-            display: none;
-        }
-    </style>
+    .menu-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .menu-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: var(--secondary-color);
+    }
+
+    /* Items del menú */
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+    }
+
+    .menu-item-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .menu-item-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .menu-item h3 {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .menu-item p {
+      color: #555;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin-top: 0.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .footer p {
+      opacity: 0.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-items {
+        grid-template-columns: 1fr;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .menu-item {
+        max-width: 100%;
+      }
+    }
+  </style>
 </head>
+  
+
+
+
 <body>
-    <header>
-        <img src="https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg" alt="Centro Restobar Logo" class="logo">
-        <h1>Bienvenidos a Centro Restobar</h1>
-        <p>Disfruta de la mejor gastronomía peruana en un ambiente único.</p>
-    </header>
+  <!-- Header -->
+  <header class="header">
+    <img src="https://entertechschool.github.io/public/code-101/excercises/centro-restobar/logo_centro.svg" alt="Logo Centro Restobar">
+    <h1>Bienvenidos a Centro Restobar</h1>
+    <p>El lugar donde la comida y la diversión se encuentran</p>
+    
+    <!-- Botones de redes sociales -->
+    <div class="social-buttons">
+      <a href="https://www.youtube.com/@Alfiura-q1t/videos" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://wa.me/933880705" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/alfiuralb/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@belfiurer342" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.facebook.com/people/Orlando-Belfiore/pfbid02Y45okVZZb6szx71S6sTNVV7snc9UZMhEDeiiR82KwoxQHXdrvdL3KCC12u6697wNl/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+  </header>
 
-    <main class="age-verification">
-        <label for="birthdate">Ingresa tu fecha de nacimiento:</label>
-        <input type="date" id="birthdate">
-        <button onclick="checkAge()">Ingresar</button>
-    </main>
+  <!-- Menú Principal -->
+  <div class="menu-container">
+    <!-- Entradas -->
+    <div class="menu-section">
+      <h2>Entradas</h2>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="https://blog.renaware.com/wp-content/uploads/2024/04/Causa-Limena-02.jpg" alt="Causa Limeña" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Causa Limeña</h3>
+            <p>Puré de papa amarilla prensado y relleno de pollo, atún o mariscos, sazonado con limón y ají amarillo.</p>
+            <div class="price">S/ 15.00</div>
+          </div>
+        </div>
 
-    <div id="menu-buttons" class="hidden">
-        <button onclick="location.href='#'">Entradas</button>
-        <button onclick="location.href='#'">Platos de Fondo</button>
-        <button onclick="location.href='#'">Bebidas</button>
+        <div class="menu-item">
+          <img src="https://resizer.glanacion.com/resizer/v2/papas-a-la-XSHZH7X5ZJFNHCFJI3YQCGNMOY.jpg?auth=0728df3f6912f07c1553b71029692e7c86fa1751c4bdb1cbece26cc31c0fa008&width=1280&height=854&quality=70&smart=true " alt="Papa a la Huancaína" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Papa a la Huancaína</h3>
+            <p>Rodajas de papa bañadas en una cremosa salsa de ají amarillo, queso fresco y leche, acompañadas de huevo duro y aceitunas.</p>
+            <div class="price">S/ 12.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://cdn0.recetasgratis.net/es/posts/4/7/5/leche_de_tigre_peruana_76574_orig.jpg" alt="Leche de Tigre" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Leche de Tigre</h3>
+            <p>Jugo cítrico resultante de la marinada del ceviche, servido en copa con trozos de pescado, mariscos y acompañado de chifles.</p>
+            <div class="price">S/ 14.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://mojo.generalmills.com/api/public/content/_4GCuvtJh0CI-0D3MerHNw_gmi_hi_res_jpeg.jpeg?v=9e0e6b46&t=16e3ce250f244648bef28c5949fb99ff" alt="Choros a la Chalaca" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Choros a la Chalaca</h3>
+            <p>Mejillones frescos servidos en su concha, cubiertos con una mezcla de cebolla, tomate, choclo y jugo de limón.</p>
+            <div class="price">S/ 13.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://i.ytimg.com/vi/jEiKrXwz_P0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAedKih0ny_QJUtd8NFJS9om7upfA" alt="Ocopa Arequipeña" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Ocopa Arequipeña</h3>
+            <p>Papas sancochadas cubiertas con una salsa a base de huacatay, maní, queso y ají, acompañadas de huevo duro y aceitunas.</p>
+            <div class="price">S/ 12.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://comidasperuanas.net/wp-content/uploads/2015/06/Anticuchos-de-Corazón-Peruanos.jpg" alt="Anticuchos de Corazón" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Anticuchos de Corazón</h3>
+            <p>Brochetas de corazón de res marinadas en ají panca y especias, asadas a la parrilla y servidas con papas doradas y choclo.</p>
+            <div class="price">S/ 18.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://assets.epicurious.com/photos/5589c41e81ac1e502367a5f7/master/pass/56389772_classic-ceviche_6x4.jpg" alt="Ceviche Clásico" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Ceviche Clásico</h3>
+            <p>Pescado fresco marinado en jugo de limón, mezclado con ají, cebolla roja y cilantro, acompañado de camote y choclo.</p>
+            <div class="price">S/ 25.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://blog.renaware.com/wp-content/uploads/2018/01/Tiradito-3779-new-logo.jpg" alt="Tiradito en Salsa de Ají Amarillo" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Tiradito en Salsa de Ají Amarillo</h3>
+            <p>Láminas finas de pescado bañadas en una salsa cremosa y ligeramente picante de ají amarillo.</p>
+            <div class="price">S/ 22.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://mojo.generalmills.com/api/public/content/RCngmFENdkS5zrHuS7yeVw_gmi_hi_res_jpeg.jpeg?v=93b2631f&t=16e3ce250f244648bef28c5949fb99ff" alt="Ensalada de Quinoa" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Ensalada de Quinoa</h3>
+            <p>Mezcla fresca de quinoa cocida con verduras de estación, aliñada con una vinagreta de maracuyá.</p>
+            <div class="price">S/ 15.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://img-global.cpcdn.com/recipes/ed88a8560e635b70/1200x630cq70/photo.jpg" alt="Tamales Criollos" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Tamales Criollos</h3>
+            <p>Masa de maíz rellena de carne de cerdo o pollo, envuelta en hojas de plátano y cocida al vapor, acompañada de salsa criolla.</p>
+            <div class="price">S/ 10.00</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <footer>
-        <div class="social-icons">
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:#"><i class="fas fa-envelope"></i></a>
+    <!-- Platos Principales -->
+    <div class="menu-section">
+      <h2>Platos Principales</h2>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmZYWA69yCHnN2hg_wQPlOfFCsrBNP3wsZ3A&s" alt="Lomo Saltado" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Lomo Saltado</h3>
+            <p>Un delicioso salteado de carne de res con cebolla, tomate y papas fritas, acompañado de arroz blanco.</p>
+            <div class="price">S/ 35.00</div>
+          </div>
         </div>
-        <p>&copy; 2025 Centro Restobar. Todos los derechos reservados.</p>
-    </footer>
 
-    <script>
-        function checkAge() {
-            const birthdate = document.getElementById("birthdate").value;
-            if (!birthdate) return;
-            
-            const birthYear = new Date(birthdate).getFullYear();
-            const currentYear = new Date().getFullYear();
-            const age = currentYear - birthYear;
-            
-            if (age >= 18) {
-                document.querySelector(".age-verification").style.display = "none";
-                document.getElementById("menu-buttons").classList.remove("hidden");
-            } else {
-                alert("Debes ser mayor de edad para ingresar.");
-            }
+        <div class="menu-item">
+          <img src="https://recetas.comohacer.cl/wp-content/uploads/2023/03/aji-de-gallina-con-arroz.jpg" alt="Ají de Gallina" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Ají de Gallina</h3>
+            <p>Guiso cremoso de pollo deshilachado con ají amarillo, leche y pan, servido con arroz blanco y huevo duro.</p>
+            <div class="price">S/ 28.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://www.comida-peruana.com/base/stock/Recipe/pachamanca-a-la-olla/pachamanca-a-la-olla_web.jpg" alt="Pachamanca" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Pachamanca</h3>
+            <p>Tradicional plato andino cocido bajo tierra con carne de res, cerdo o pollo, acompañado de papas, choclo y habas.</p>
+            <div class="price">S/ 45.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://buenazo.cronosmedia.glr.pe/original/2020/09/22/5f6956de0352f279c449e24e.jpg" alt="Seco de Cabrito" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Seco de Cabrito</h3>
+            <p>Estofado tradicional del norte del Perú con carne de cabrito marinada en chicha de jora, acompañado de frejoles y arroz.</p>
+            <div class="price">S/ 40.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Tacu_Tacu.jpg" alt="Tacu Tacu con Mariscos" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Tacu Tacu con Mariscos</h3>
+            <p>Exquisita combinación de arroz y frejoles dorados en sartén, acompañado de un mix de mariscos en salsa.</p>
+            <div class="price">S/ 38.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://tofuu.getjusto.com/orioneat-local/resized2/psLpdg8RTNNEjvWz3-300-x.webp" alt="Pescado a la Plancha con Tacu Tacu" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Pescado a la Plancha con Tacu Tacu</h3>
+            <p>Filete de pescado a la plancha servido con una base de tacu tacu de frejoles y arroz crocante.</p>
+            <div class="price">S/ 36.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://www.recetasnestle.com.ec/sites/default/files/styles/recipe_detail_desktop_new/public/srh_recipes/bbb31707c4bd37def6dd0ae89d42e085.jpg?itok=1U9BUf6D" alt="Ceviche de Pescado" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Ceviche de Pescado</h3>
+            <p>Plato insignia del Perú, hecho con pescado fresco marinado en limón, ají y especias, acompañado de choclo y camote.</p>
+            <div class="price">S/ 30.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://i.ytimg.com/vi/H6lgxgEWIs8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCTdb3x_uADhlQHLbsZmEgnP9P1-w" alt="Arroz con Pollo" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Arroz con Pollo</h3>
+            <p>Arroz verde sazonado con culantro, acompañado de una jugosa presa de pollo y salsa criolla.</p>
+            <div class="price">S/ 27.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://cdn-ilddihb.nitrocdn.com/MgqZCGPEMHvMRLsisMUCAIMWvgGMxqaj/assets/images/optimized/rev-1d96046/www.goya.com/wp-content/uploads/2023/10/peruvian-style-shrimp-soup.jpg" alt="Chupe de Camarones" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Chupe de Camarones</h3>
+            <p>Sopa contundente de camarones con leche, papa, huevo, arroz y queso, típica de la gastronomía arequipeña.</p>
+            <div class="price">S/ 42.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bebidas sin Alcohol -->
+    <div class="menu-section">
+      <h2>Bebidas sin Alcohol</h2>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="https://www.lovferments.com/wp-content/uploads/2021/04/beb_chicha.jpg" alt="Chicha Morada" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Chicha Morada</h3>
+            <p>Refrescante bebida a base de maíz morado, aromatizada con canela y clavo de olor, endulzada al gusto.</p>
+            <div class="price">Vaso S/ 5.00 | Jarra S/ 15.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwtLQC2e3b20gMg-nPG07Vb3HtUT6NSbjEEw&s" alt="Limonada de Hierba Luisa" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Limonada de Hierba Luisa</h3>
+            <p>Limonada tradicional infusionada con hierba luisa, ofreciendo un toque cítrico y herbal.</p>
+            <div class="price">Vaso S/ 4.00 | Jarra S/ 12.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRUkZ7MzMr19cF2aa7M1MP78xp433KHyJI6Q&s" alt="Emoliente Andino" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Emoliente Andino</h3>
+            <p>Bebida caliente y reconfortante elaborada con cebada, linaza y hierbas medicinales.</p>
+            <div class="price">S/ 6.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://okdiario.com/img/recetas/2017/08/17/agua-de-cebada-2.jpg" alt="Agua de Cebada" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Agua de Cebada</h3>
+            <p>Refresco frío preparado a base de cebada tostada, ligeramente endulzado y aromatizado con limón.</p>
+            <div class="price">Vaso S/ 4.00 | Jarra S/ 12.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/39bd5378ac4038a37c7fdaa4bd865598/Derivates/a711495123992a20dacf98c637816c87e5d735f2.jpg" alt="Maracuyá Sour sin alcohol" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Maracuyá Sour sin alcohol</h3>
+            <p>Bebida espumosa y ácida elaborada con jugo de maracuyá fresco, clara de huevo y jarabe de goma.</p>
+            <div class="price">S/ 8.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://comidasperuanas.net/wp-content/uploads/2023/11/Receta-de-Refresco-de-Camu-Camu.jpg" alt="Refresco de Camu Camu" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Refresco de Camu Camu</h3>
+            <p>Jugo natural de camu camu, fruta amazónica rica en vitamina C, servido frío.</p>
+            <div class="price">Vaso S/ 6.00 | Jarra S/ 18.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/FJ5GFKSDMNG47PFSMK7UFJAVBU.jpg" alt="Mate de Coca" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Mate de Coca</h3>
+            <p>Infusión caliente de hojas de coca, tradicional de los Andes, ideal para la digestión.</p>
+            <div class="price">S/ 5.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://img-global.cpcdn.com/recipes/b4cc360d0d77e535/680x482cq70/batido-de-lucuma-foto-principal.jpg" alt="Jugo de Lúcuma con Leche" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Jugo de Lúcuma con Leche</h3>
+            <p>Bebida cremosa y dulce preparada con lúcuma fresca y leche.</p>
+            <div class="price">S/ 7.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://campograndeperu.com/wp-content/uploads/2024/03/jugo-de-fresa-con-leche-1024x683.webp" alt="Fresa con Leche" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Fresa con Leche</h3>
+            <p>Batido refrescante de fresas frescas mezcladas con leche y un toque de azúcar.</p>
+            <div class="price">S/ 7.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/88880ffa-c506-49c4-839a-f8456ccc5dd2/Derivates/a27a2a0a-65cc-4b6b-a7ed-ca70928ff3bb.jpg" alt="Agua de Piña con Canela" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Agua de Piña con Canela</h3>
+            <p>Infusión fría de cáscara de piña y canela, ligeramente endulzada.</p>
+            <div class="price">Vaso S/ 4.00 | Jarra S/ 12.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bebidas con Alcohol -->
+   
+      <div class="menu-section" id="alcoholic-drinks">
+  <h2>Bebidas con Alcohol</h2>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const alcoholicSection = document.getElementById('alcoholic-drinks');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          verifyAge();
+          observer.unobserve(entry.target);
         }
-    </script>
-</body>
-</html>
+      });
+    }, { threshold: 0.1 });
+    
+    if (alcoholicSection) {
+      observer.observe(alcoholicSection);
+    }
+  });
+
+  function verifyAge() {
+    const currentYear = new Date().getFullYear();
+    const birthYear = prompt("Para acceder a la sección de bebidas alcohólicas, por favor ingresa tu año de nacimiento:");
+    
+    // Si el usuario cancela o no ingresa nada, ocultar la sección
+    if (birthYear === null || birthYear === "") {
+      hideAlcoholicDrinks();
+      alert("No has ingresado tu año de nacimiento. No puedes acceder a esta sección.");
+      return;
+    }
+    
+    // Si no es un número válido, pedir de nuevo
+    if (isNaN(birthYear)) {
+      alert("Por favor ingresa un año válido (ejemplo: 1990)");
+      verifyAge(); // Volver a preguntar
+      return;
+    }
+    
+    const age = currentYear - parseInt(birthYear);
+    
+    if (age >= 18) {
+      alert("Puedes acceder a las bebidas con alcohol. ¡Disfruta con responsabilidad!");
+    } else {
+      hideAlcoholicDrinks();
+      alert("No puedes acceder a las bebidas con alcohol. Disfruta de nuestras opciones sin alcohol.");
+    }
+  }
+
+  function hideAlcoholicDrinks() {
+    const alcoholicSection = document.getElementById('alcoholic-drinks');
+    if (alcoholicSection) {
+      alcoholicSection.style.display = 'none'; // Oculta la sección
+    }
+  }
+</script>  
+</div>
+      <div class="menu-items">
+        <div class="menu-item">
+          <img src="https://sommelier.com.pe/wp-content/uploads/Chilcano-Foto-Promperu.jpg" alt="Chilcano de Pisco" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Chilcano de Pisco</h3>
+            <p>Una mezcla ligera y burbujeante de pisco, ginger ale y un toque de limón. Ideal para quienes buscan una bebida refrescante con el auténtico sabor del pisco.</p>
+            <div class="price">S/ 16.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkE2BGB6RIxYFHbP6Pa8uIb9JVJ6qzT4V0ag&s" alt="Maracuyá Sour" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Maracuyá Sour</h3>
+            <p>Una variante frutal del clásico Pisco Sour, incorporando el exótico sabor del maracuyá, que aporta una nota dulce y ácida a la vez.</p>
+            <div class="price">S/ 20.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://i0.wp.com/pisco.net.pe/wp-content/uploads/2019/05/8.png?fit=400%2C400&ssl=1" alt="Capitán" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Capitán</h3>
+            <p>Un cóctel elegante que combina pisco y vermut rojo, resultando en una bebida suave y aromática, perfecta para iniciar una velada.</p>
+            <div class="price">S/ 17.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://www.comeperuano.pe/wp-content/uploads/2022/10/receta-coctel-de-machu-picchu.jpg" alt="Machu Picchu" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Machu Picchu</h3>
+            <p>Cóctel en capas que presenta una atractiva combinación de granadina, jugo de naranja y licor de menta, creando un espectáculo visual y un sabor único.</p>
+            <div class="price">S/ 19.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://cdn0.recetasgratis.net/es/posts/2/9/1/coctel_de_algarrobina_77192_600_square.jpg" alt="Algarrobina" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Algarrobina</h3>
+            <p>Bebida cremosa y dulce que mezcla pisco, leche evaporada, jarabe de algarrobo, huevo y canela. Un postre líquido tradicional y reconfortante.</p>
+            <div class="price">S/ 18.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://cdn.shopify.com/s/files/1/0527/0395/3072/files/20240626172337-pisco-punch.webp?v=1719422619&width=600&height=900" alt="Pisco Punch" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Pisco Punch</h3>
+            <p>Refrescante cóctel que combina pisco, jugo de piña y almíbar, ofreciendo una explosión tropical en cada sorbo.</p>
+            <div class="price">S/ 20.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://polleriaslagranja.com/wp-content/uploads/2022/10/La-Granja-Real-Food-Chicken-Sangria-Jarra.png" alt="Sangría Peruana" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Sangría Peruana</h3>
+            <p>Versión local de la clásica sangría, mezclando vino tinto, pisco, frutas frescas y un toque de especias, ideal para compartir.</p>
+            <div class="price">S/ 22.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://supermercadosnacional.com/media/catalog/product/cache/afcac67a0d77755283578b677f040f2b/2/2/2220613-1.jpg" alt="Cusqueña Negra" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Cusqueña Negra</h3>
+            <p>Cerveza artesanal peruana de color oscuro, con notas a maltas tostadas y un sabor suave y equilibrado.</p>
+            <div class="price">S/ 12.00</div>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Canelazo.jpg/1200px-Canelazo.jpg" alt="Canelazo Andino" class="menu-item-image">
+          <div class="menu-item-content">
+            <h3>Canelazo Andino</h3>
+            <p>Bebida caliente tradicional de los Andes, preparada con pisco, agua de canela, clavo de olor y endulzada con panela. Perfecta para las noches frescas.</p>
+            <div class="price">S/ 15.00</div>
+          </div>
+        </div>
+      </div>
+    </d>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Centro Restobar © 2025 | Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Verificación de edad al llegar a la sección de bebidas con alcohol
+    document.addEventListener('DOMContentLoaded', function() {
+      const alcoholicSection = document.getElementById('alcoholic-drinks');
+      
+      // Observar cuando la sección de bebidas con alcohol entra en la vista
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            checkAge();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      if (alcoholicSection) {
+        observer.observe(alcoholicSection);
+      }
+    });
+
+    function checkAge() {
+      const birth
+      <script>
+  // Verificación de edad al llegar a la sección de bebidas con alcohol
+  document.addEventListener('DOMContentLoaded', function() {
+    const alcoholicSection = document.getElementById('alcoholic-drinks');
+    
+    // Observar cuando la sección de bebidas con alcohol entra en la vista
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          checkAge();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    if (alcoholicSection) {
+      observer.observe(alcoholicSection);
+    }
+  });
+
+  function checkAge() {
+    const currentYear = new Date().getFullYear();
+    const birthYear = prompt("Para acceder a la sección de bebidas alcohólicas, por favor ingresa tu año de nacimiento:");
+    
+    if (birthYear === null || birthYear === "") {
+      alert("No has ingresado tu año de nacimiento. No podemos verificar tu edad.");
+      return;
+    }
+    
+    if (isNaN(birthYear) {
+      alert("Por favor ingresa un año válido (ejemplo: 1990)");
+      return;
+    }
+    
+    const age = currentYear - parseInt(birthYear);
+    
+    if (age >= 18) {
+      alert("Puedes escoger también las bebidas con alcohol. ¡Disfruta con responsabilidad!");
+    } else {
+      alert("No puedes escoger bebidas con alcohol. Por favor disfruta de nuestras deliciosas opciones sin alcohol.");
+      // Opcional: desplazar al usuario a otra sección
+      window.scrollTo(0, 0);
+    }
+  }
+</script>
 
